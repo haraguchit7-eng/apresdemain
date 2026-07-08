@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>APRES DEMAIN | ブランドを創る会社</title>
+  <meta name="description" content="株式会社アプレドゥマンは、レディースアパレルブランドの企画・製造・卸売、OEM/ODM、ブランドプロデュースを行う会社です。" />
+
+  <style>
+    :root{
+      --black:#050505;
+      --deep:#0d0d0d;
+      --cream:#f4efe6;
+      --muted:#b9b1a4;
+      --gold:#c6a15b;
+      --line:rgba(244,239,230,.14);
+      --card:rgba(255,255,255,.045);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"Helvetica Neue",Arial,"Hiragino Sans","Yu Gothic",sans-serif;
+      background:var(--black);
+      color:var(--cream);
+      line-height:1.8;
+      letter-spacing:.04em;
+      overflow-x:hidden;
+    }
+    a{text-decoration:none;color:inherit}
+    img{width:100%;display:block;object-fit:cover}
+    .container{width:min(1180px,90%);margin:auto}
+
+    header{
+      position:fixed;top:0;left:0;width:100%;z-index:1000;
+      background:rgba(5,5,5,.66);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid var(--line);
+    }
+    .header-inner{
+      height:76px;display:flex;align-items:center;justify-content:space-between;
+    }
+    .logo{
+      font-size:18px;font-weight:600;letter-spacing:.18em;
+    }
+    .logo span{color:var(--gold)}
+    nav{display:flex;gap:28px;font-size:13px;color:var(--muted)}
+    nav a:hover{color:var(--cream)}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:14px 24px;border-radius:999px;font-size:14px;font-weight:600;
+      transition:.3s;border:1px solid var(--line);
+    }
+    .btn-gold{
+      background:linear-gradient(135deg,#d9bc78,#9c7131);
+      color:#111;border:none;box-shadow:0 20px 60px rgba(198,161,91,.25);
+    }
+    .btn:hover{transform:translateY(-2px)}
+
+    .hero{
+      min-height:100vh;display:flex;align-items:center;position:relative;
+      padding:150px 0 90px;overflow:hidden;
+    }
+    .hero::before{
+      content:"";position:absolute;inset:0;z-index:-2;
+      background:
+        linear-gradient(90deg,rgba(5,5,5,.92),rgba(5,5,5,.6),rgba(5,5,5,.18)),
+        url("https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+    }
+    .hero::after{
+      content:"";position:absolute;right:-260px;top:120px;width:700px;height:700px;
+      background:radial-gradient(circle,rgba(198,161,91,.26),transparent 65%);
+      z-index:-1;
+    }
+    .eyebrow{
+      color:var(--gold);font-size:12px;letter-spacing:.26em;
+      text-transform:uppercase;margin-bottom:20px;font-weight:700;
+    }
+    h1{
+      font-size:clamp(54px,9vw,128px);
+      line-height:.96;letter-spacing:-.07em;font-weight:500;
+      margin-bottom:34px;
+    }
+    .hero p{
+      max-width:620px;color:var(--muted);font-size:18px;margin-bottom:38px;
+    }
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+
+    section{padding:120px 0}
+    .section-title{margin-bottom:58px}
+    .section-title h2{
+      font-size:clamp(34px,5vw,66px);
+      line-height:1.15;letter-spacing:-.05em;font-weight:500;margin-bottom:20px;
+    }
+    .section-title p{max-width:760px;color:var(--muted)}
+
+    .philosophy{
+      background:var(--deep);
+      text-align:center;
+    }
+    .philosophy .big-copy{
+      font-size:clamp(30px,5vw,62px);
+      line-height:1.45;letter-spacing:-.04em;
+      max-width:980px;margin:auto;
+    }
+    .philosophy .big-copy span{color:var(--gold)}
+
+    .stats{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:70px;
+    }
+    .stat{
+      border:1px solid var(--line);border-radius:28px;padding:30px;
+      background:var(--card);
+    }
+    .stat strong{
+      display:block;font-size:34px;color:var(--gold);line-height:1.2;margin-bottom:8px;
+    }
+    .stat p{color:var(--muted);font-size:13px}
+
+    .brands-grid{
+      display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:stretch;
+    }
+    .brand-main{
+      min-height:620px;border-radius:36px;overflow:hidden;position:relative;
+      background:url("https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1400&q=80") center/cover no-repeat;
+      border:1px solid var(--line);
+    }
+    .brand-main::after{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(180deg,transparent,rgba(0,0,0,.84));
+    }
+    .brand-copy{
+      position:absolute;left:38px;right:38px;bottom:38px;z-index:1;
+    }
+    .brand-copy h3{
+      font-size:44px;line-height:1.1;letter-spacing:-.05em;margin-bottom:14px;
+    }
+    .brand-copy p{color:var(--muted)}
+    .brand-side{display:grid;gap:20px}
+    .mini-card{
+      border:1px solid var(--line);border-radius:28px;padding:32px;
+      background:rgba(255,255,255,.045);
+    }
+    .mini-card h3{font-size:24px;margin-bottom:12px}
+    .mini-card p{color:var(--muted);font-size:14px}
+
+    .works{
+      background:var(--deep);
+    }
+    .works-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
+    }
+    .work-card{
+      border:1px solid var(--line);border-radius:30px;overflow:hidden;
+      background:var(--card);
+    }
+    .work-card img{height:280px}
+    .work-card div{padding:28px}
+    .work-card h3{font-size:22px;margin-bottom:10px}
+    .work-card p{color:var(--muted);font-size:14px}
+
+    .oem-wrap{
+      display:grid;grid-template-columns:.9fr 1.1fr;gap:58px;align-items:center;
+    }
+    .oem-img{
+      height:650px;border-radius:36px;overflow:hidden;border:1px solid var(--line);
+    }
+    .service-list{display:grid;gap:16px}
+    .service-item{
+      padding:24px 26px;border-radius:22px;border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+    }
+    .service-item span{color:var(--gold);font-size:12px;letter-spacing:.18em}
+    .service-item h3{font-size:22px;margin:6px 0}
+    .service-item p{color:var(--muted);font-size:14px}
+
+    .fanbrand{
+      position:relative;overflow:hidden;background:#080808;
+    }
+    .fanbrand::before{
+      content:"";position:absolute;inset:0;
+      background:
+        linear-gradient(90deg,rgba(5,5,5,.95),rgba(5,5,5,.64)),
+        url("https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+      opacity:.9;
+    }
+    .fanbrand .container{position:relative;z-index:1}
+    .fanbrand h2{
+      font-size:clamp(42px,7vw,86px);
+      line-height:1.05;letter-spacing:-.06em;margin-bottom:26px;
+    }
+    .fanbrand p{max-width:660px;color:var(--muted);margin-bottom:34px}
+
+    .company-grid{
+      display:grid;grid-template-columns:1fr 1fr;gap:30px;
+    }
+    .company-card{
+      border:1px solid var(--line);border-radius:30px;padding:34px;
+      background:var(--card);
+    }
+    .company-card dl{display:grid;gap:16px}
+    .company-card div{
+      display:grid;grid-template-columns:130px 1fr;gap:20px;
+      border-bottom:1px solid var(--line);padding-bottom:16px;
+    }
+    .company-card dt{color:var(--gold);font-size:13px}
+    .company-card dd{color:var(--muted)}
+
+    .contact{
+      text-align:center;background:
+        linear-gradient(180deg,rgba(5,5,5,.4),rgba(5,5,5,.95)),
+        url("https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+    }
+    .contact h2{
+      font-size:clamp(48px,8vw,104px);line-height:1;letter-spacing:-.07em;
+      margin-bottom:24px;
+    }
+    .contact p{max-width:640px;margin:0 auto 34px;color:var(--muted)}
+
+    footer{
+      border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:12px;
+    }
+    .footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+    .reveal{
+      opacity:0;transform:translateY(34px);transition:1s ease;
+    }
+    .reveal.show{opacity:1;transform:translateY(0)}
+
+    @media(max-width:900px){
+      nav{display:none}
+      .hero{padding-top:120px}
+      .stats,.brands-grid,.works-grid,.oem-wrap,.company-grid{
+        grid-template-columns:1fr;
+      }
+      .brand-main{min-height:520px}
+      .oem-img{height:440px}
+    }
+    @media(max-width:520px){
+      .header-inner{height:64px}
+      section{padding:82px 0}
+      .hero-actions{flex-direction:column}
+      .btn{width:100%}
+      .stats{gap:12px}
+      .stat{padding:22px}
+      .company-card div{grid-template-columns:1fr;gap:6px}
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container header-inner">
+      <a href="#" class="logo">APRES <span>DEMAIN</span></a>
+      <nav>
+        <a href="#philosophy">Philosophy</a>
+        <a href="#brands">Brands</a>
+        <a href="#works">Works</a>
+        <a href="#oem">OEM / ODM</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container reveal">
+        <div class="eyebrow">Crafting Brands That Last</div>
+        <h1>流行ではなく、<br>永く愛される<br>ブランドを。</h1>
+        <p>
+          株式会社アプレドゥマンは、レディースアパレルブランドの企画・製造・卸売、
+          OEM/ODM、ブランドプロデュースを通じて、女性に選ばれ続けるものづくりを行っています。
+        </p>
+        <div class="hero-actions">
+          <a href="#brands" class="btn btn-gold">ブランドを見る</a>
+          <a href="#contact" class="btn">お問い合わせ</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="philosophy" class="philosophy">
+      <div class="container reveal">
+        <div class="eyebrow">Philosophy</div>
+        <div class="big-copy">
+          私たちは、服を作る会社ではありません。<br>
+          <span>顧客から選ばれ続ける理由</span>を、<br>
+          ブランドとして形にする会社です。
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <strong>2億円規模</strong>
+            <p>レディースブランド運営実績</p>
+          </div>
+          <div class="stat">
+            <strong>百貨店</strong>
+            <p>展開・POPUP実績</p>
+          </div>
+          <div class="stat">
+            <strong>芸能人</strong>
+            <p>着用実績多数</p>
+          </div>
+          <div class="stat">
+            <strong>OEM / ODM</strong>
+            <p>企画から生産まで対応</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="brands">
+      <div class="container">
+        <div class="section-title reveal">
+          <div class="eyebrow">Brands</div>
+          <h2>ブランドは、<br>世界観から生まれる。</h2>
+          <p>
+            シルエット、素材、着心地、見え方。アプレドゥマンは、
+            日常に特別感をもたらすレディースブランドを展開しています。
+          </p>
+        </div>
+
+        <div class="brands-grid">
+          <div class="brand-main reveal">
+            <div class="brand-copy">
+              <h3>troisiemechaco</h3>
+              <p>
+                都心で働き、人前に立つ女性たちへ。
+                細く見えるシルエット、着心地、華やかさを大切にしたブランド。
+              </p>
+            </div>
+          </div>
+
+          <div class="brand-side">
+            <div class="mini-card reveal">
+              <h3>Original Brand</h3>
+              <p>
+                自社ブランドを通じ、セレクトショップ、百貨店、EC、POPUPで展開。
+                多様な女性のライフシーンに寄り添います。
+              </p>
+            </div>
+            <div class="mini-card reveal">
+              <h3>For Women on Stage</h3>
+              <p>
+                講演会、アナウンサー、歌手、経営者など、人前に出る女性から支持される商品づくり。
+              </p>
+            </div>
+            <div class="mini-card reveal">
+              <h3>Material & Silhouette</h3>
+              <p>
+                オリジナル素材開発、細見えする設計、着心地の良い仕様にこだわります。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="works" class="works">
+      <div class="container">
+        <div class="section-title reveal">
+          <div class="eyebrow">Works</div>
+          <h2>積み上げてきた実績が、<br>ブランドの信頼をつくる。</h2>
+          <p>
+            百貨店、セレクトショップ、EC、著名人着用、OEM/ODM。
+            事業としてブランドを育ててきた経験があります。
+          </p>
+        </div>
+
+        <div class="works-grid">
+          <div class="work-card reveal">
+            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=80" alt="">
+            <div>
+              <h3>百貨店・セレクトショップ</h3>
+              <p>三越伊勢丹、阪急阪神、高島屋、有力セレクトショップ等での展開実績。</p>
+            </div>
+          </div>
+
+          <div class="work-card reveal">
+            <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=80" alt="">
+            <div>
+              <h3>著名人着用</h3>
+              <p>女優、タレント、アナウンサー、スポーツ選手など多数の着用実績。</p>
+            </div>
+          </div>
+
+          <div class="work-card reveal">
+            <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80" alt="">
+            <div>
+              <h3>EC・POPUP</h3>
+              <p>ZOZOランキング1位、VERY STOREでのヒット商品、POPUP展開実績。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="oem">
+      <div class="container oem-wrap">
+        <div class="oem-img reveal">
+          <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=900&q=80" alt="">
+        </div>
+
+        <div>
+          <div class="section-title reveal">
+            <div class="eyebrow">OEM / ODM</div>
+            <h2>企画から生産まで、<br>一貫して支える。</h2>
+            <p>
+              展示会サンプル、デザイン柄、別注、ネーム替え、生地提案から生産まで。
+              小ロットにも対応し、ブランドの立ち上げ・商品展開を支援します。
+            </p>
+          </div>
+
+          <div class="service-list">
+            <div class="service-item reveal">
+              <span>01</span>
+              <h3>OEM</h3>
+              <p>お客様の要望に合わせた別注商品・ネーム替え商品の生産。</p>
+            </div>
+            <div class="service-item reveal">
+              <span>02</span>
+              <h3>ODM</h3>
+              <p>デザイン案をもとに、生地提案から仕様設計・生産まで対応。</p>
+            </div>
+            <div class="service-item reveal">
+              <span>03</span>
+              <h3>Small Lot</h3>
+              <p>初期リスクを抑えた小ロット生産にも対応可能。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fanbrand">
+      <div class="container reveal">
+        <div class="eyebrow">New Business</div>
+        <h2>あなたのファンを、<br>あなたのブランドに。</h2>
+        <p>
+          FAN BRANDは、アプレドゥマンのブランド運営・OEM/ODM・生産管理ノウハウを活用した
+          新しいブランドプロデュース事業です。美容室、エステ、ヨガ、インフルエンサーなど、
+          顧客やファンを持つ方のブランド立ち上げを支援します。
+        </p>
+        <a href="#" class="btn btn-gold">FAN BRANDを見る</a>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-title reveal">
+          <div class="eyebrow">Company</div>
+          <h2>会社概要</h2>
+        </div>
+
+        <div class="company-grid">
+          <div class="company-card reveal">
+            <dl>
+              <div>
+                <dt>会社名</dt>
+                <dd>株式会社アプレドゥマン</dd>
+              </div>
+              <div>
+                <dt>事業内容</dt>
+                <dd>婦人服の企画・製造・卸売、EC販売、OEM/ODM</dd>
+              </div>
+              <div>
+                <dt>展開ブランド</dt>
+                <dd>troisiemechaco ほか</dd>
+              </div>
+              <div>
+                <dt>販売方法</dt>
+                <dd>セレクトショップ卸、自社EC、POPUP Event</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="company-card reveal">
+            <dl>
+              <div>
+                <dt>強み</dt>
+                <dd>ブランド運営、素材開発、シルエット設計、小ロット対応</dd>
+              </div>
+              <div>
+                <dt>顧客層</dt>
+                <dd>30〜50代の都心部女性、人前に出る機会の多い女性</dd>
+              </div>
+              <div>
+                <dt>実績</dt>
+                <dd>百貨店、セレクトショップ、著名人着用、ECヒット商品</dd>
+              </div>
+              <div>
+                <dt>お問い合わせ</dt>
+                <dd>事業提携、OEM/ODM、ブランドプロデュース相談</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container reveal">
+        <div class="eyebrow">Contact</div>
+        <h2>Let’s Create<br>Together.</h2>
+        <p>
+          ブランド、OEM/ODM、事業提携、ブランドプロデュースに関するご相談はこちらからお問い合わせください。
+        </p>
+        <a href="mailto:info@example.com?subject=アプレドゥマンへのお問い合わせ" class="btn btn-gold">お問い合わせする</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>APRES DEMAIN</div>
+      <div>Crafting Brands That Last.</div>
+      <div>© APRES DEMAIN All Rights Reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('show');
+        }
+      });
+    },{threshold:.14});
+    reveals.forEach(el=>observer.observe(el));
+  </script>
+</body>
+</html>
