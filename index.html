@@ -61,23 +61,68 @@
     .arrow::after{content:"";position:absolute;right:0;top:-3px;width:7px;height:7px;border-top:1px solid #222;border-right:1px solid #222;transform:rotate(45deg)}
 
 
-    /* Original Brands */
-    .brands-section{padding:130px 0 140px;background:#fff}
-    .brands-head{display:flex;justify-content:space-between;align-items:end;gap:40px;border-top:1px solid var(--line);padding-top:34px;margin-bottom:52px}
-    .brands-head h2{font-family:Didot,"Bodoni 72",Georgia,"Times New Roman",serif;font-size:clamp(50px,5.4vw,88px);font-weight:400;line-height:1;letter-spacing:.05em}
-    .brands-head p{max-width:470px;color:var(--muted)}
-    .brand-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:70px 34px}
-    .brand-item{display:block}
-    .brand-image{height:620px;overflow:hidden;background:#ddd;position:relative}
-    .brand-image::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 65%,rgba(0,0,0,.18));opacity:0;transition:.55s ease}
-    .brand-image img{transition:1.3s ease;filter:saturate(.9)}
-    .brand-item:hover .brand-image img{transform:scale(1.045);filter:saturate(1)}
-    .brand-item:hover .brand-image::after{opacity:1}
-    .brand-meta{display:grid;grid-template-columns:70px 1fr auto;gap:22px;align-items:end;padding-top:20px}
-    .brand-no{font-family:Georgia,serif;color:#999;font-size:12px}
-    .brand-name{font-family:Didot,Georgia,serif;font-size:32px;font-weight:400;line-height:1.1;letter-spacing:.03em}
-    .brand-view{font-size:9px;letter-spacing:.28em;text-transform:uppercase;padding-bottom:8px;border-bottom:1px solid #111;transition:.3s ease}
-    .brand-item:hover .brand-view{transform:translateX(6px)}
+   /* ---------- BRANDS ---------- */
+
+.brands-section{
+    padding:130px 0;
+    background:#fff;
+}
+
+.brands-head{
+    border-top:1px solid var(--line);
+    padding-top:34px;
+    margin-bottom:80px;
+}
+
+.brands-head h2{
+    font-family:Didot,"Bodoni 72",Georgia,serif;
+    font-size:clamp(54px,5vw,86px);
+    font-weight:400;
+    margin-bottom:20px;
+}
+
+.brands-head p{
+    max-width:560px;
+    color:var(--muted);
+}
+
+.brand-list{
+    display:flex;
+    flex-direction:column;
+    gap:90px;
+}
+
+.brand-row{
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+}
+
+.brand-name{
+    font-family:Didot,Georgia,serif;
+    font-size:26px;
+    font-weight:400;
+    letter-spacing:.05em;
+}
+
+.brand-image{
+    width:100%;
+    aspect-ratio:2/1;
+    overflow:hidden;
+    background:#eee;
+}
+
+.brand-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    transition:1.4s ease;
+}
+
+.brand-row:hover img{
+    transform:scale(1.03);
+}
 
     .partners{background:var(--pale);padding:32px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
     .partners-inner{width:min(1780px,90%);margin:0 auto;display:grid;grid-template-columns:210px 1fr 100px;align-items:center;gap:44px}
@@ -152,32 +197,80 @@
       .work-gallery{grid-template-columns:1fr}
       .work-img:nth-child(n){height:420px;margin-top:0}
     }
-    @media(max-width:540px){
-      .logo{width:150px}
+   @media(max-width:540px){
 
-      .brands-section{padding:90px 0 100px}
-      .brands-head h2{font-size:54px}
-      .brand-image{height:390px}
-      .brand-meta{grid-template-columns:42px 1fr}
-      .brand-view{grid-column:2;justify-self:start;margin-top:8px}
-      .brand-name{font-size:24px}
+  .logo{
+    width:150px;
+  }
 
-      .hero-title{letter-spacing:.03em}
-      .about{padding:72px 0}
-      .about h2{font-size:22px}
-      .feature-img{height:230px}
+  .hero-title{
+    letter-spacing:.03em;
+  }
 
-      .brand-grid{grid-template-columns:1fr;gap:58px}
-      .brand-image{height:520px}
-      .brands-head{display:block}
-      .brands-head p{margin-top:22px}
+  .about{
+    padding:72px 0;
+  }
 
-      .partner-list{grid-template-columns:1fr 1fr}
-      .editorial{padding:88px 0}
-      .editorial-img,.fanbrand-img,.work-img:nth-child(n){height:340px}
-      .works-head{display:block}
-      .works-head p{margin-top:22px}
-    }
+  .about h2{
+    font-size:22px;
+  }
+
+  .feature-img{
+    height:230px;
+  }
+
+  .brands-section{
+    padding:80px 0;
+  }
+
+  .brands-head{
+    display:block;
+  }
+
+  .brands-head h2{
+    font-size:52px;
+  }
+
+  .brands-head p{
+    margin-top:18px;
+  }
+
+  .brand-list{
+    gap:50px;
+  }
+
+  .brand-name{
+    font-size:20px;
+  }
+
+  .brand-image{
+    width:100%;
+    aspect-ratio:2 / 1;
+    height:auto;
+  }
+
+  .partner-list{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .editorial{
+    padding:88px 0;
+  }
+
+  .editorial-img,
+  .fanbrand-img,
+  .work-img:nth-child(n){
+    height:340px;
+  }
+
+  .works-head{
+    display:block;
+  }
+
+  .works-head p{
+    margin-top:22px;
+  }
+}
   </style>
 </head>
 
@@ -221,43 +314,58 @@
 
 
     <section id="brands" class="brands-section">
-      <div class="works-inner">
-        <div class="brands-head reveal">
-          <div>
-            <div class="section-label">Original collections</div>
-            <h2>Brands</h2>
-          </div>
-          <p>自社で展開する4つのブランド。それぞれの女性像と世界観を、企画・素材・シルエットから丁寧に形にしています。</p>
-        </div>
+  <div class="wide">
 
-        <div class="brand-grid">
-          <a class="brand-item reveal" href="brands/masaco-teranishi/">
-            <div class="brand-image">
-  <img src="images/masaco.jpg" alt="masaco teranishi">
-</div>
-            <div class="brand-meta"><div class="brand-no">01</div><div class="brand-name">masaco teranishi</div><div class="brand-view">View brand →</div></div>
-          </a>
-          <a class="brand-item reveal" href="brands/troisiemechaco/">
-            <div class="brand-image">
-  <img src="images/troisiemechaco.jpg" alt="troisiemechaco">
-</div>
-            <div class="brand-meta"><div class="brand-no">02</div><div class="brand-name">troisiemechaco</div><div class="brand-view">View brand →</div></div>
-          </a>
-          <a class="brand-item reveal" href="brands/norah/">
-            <div class="brand-image">
-  <img src="images/norah.jpg" alt="NorAh">
-</div>
-            <div class="brand-meta"><div class="brand-no">03</div><div class="brand-name">NorAh</div><div class="brand-view">View brand →</div></div>
-          </a>
-          <a class="brand-item reveal" href="brands/serene/">
-            <div class="brand-image">
-  <img src="images/serene.jpg" alt="SERENE">
-</div>
-            <div class="brand-meta"><div class="brand-no">04</div><div class="brand-name">SERENE</div><div class="brand-view">View brand →</div></div>
-          </a>
-        </div>
+    <div class="brands-head">
+      <div>
+        <div class="label">Original collections</div>
+        <h2>Brands</h2>
       </div>
-    </section>
+
+      <p>
+        自社で展開する4つのブランド。
+        それぞれの女性像と世界観を、
+        企画・素材・シルエットから丁寧に形にしています。
+      </p>
+    </div>
+
+    <div class="brand-list">
+
+      <article class="brand-row">
+        <div class="brand-name">masaco teranishi</div>
+
+        <div class="brand-image">
+          <img src="images/masaco.jpg" alt="masaco teranishi">
+        </div>
+      </article>
+
+      <article class="brand-row">
+        <div class="brand-name">troisiemechaco</div>
+
+        <div class="brand-image">
+          <img src="images/troisiemechaco.jpg" alt="troisiemechaco">
+        </div>
+      </article>
+
+      <article class="brand-row">
+        <div class="brand-name">NorAh</div>
+
+        <div class="brand-image">
+          <img src="images/norah.png" alt="NorAh">
+        </div>
+      </article>
+
+      <article class="brand-row">
+        <div class="brand-name">SERENE</div>
+
+        <div class="brand-image">
+          <img src="images/serene.jpg" alt="SERENE">
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
 
     <section class="partners">
       <div class="partners-inner">
