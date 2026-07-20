@@ -1,1258 +1,1508 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>après-demain | Fashion Creation</title>
-  <meta name="description" content="après-demainは、ブランド企画・デザイン・素材開発・生産・品質管理・販売戦略までを一貫して手がけるファッションカンパニーです。" />
+  <meta
+    name="description"
+    content="après-demainは、ブランド企画・デザイン・素材開発・生産・品質管理・販売戦略までを一貫して手がけるファッションカンパニーです。"
+  >
+
   <style>
+    :root {
+      --white: #fff;
+      --ink: #151515;
+      --muted: #6d6760;
+      --pale: #f6f2eb;
+      --line: rgba(0, 0, 0, 0.1);
+      --dark: #25231f;
+      --header-height: 76px;
+      --content-wide: min(1780px, 90%);
+      --content: min(1500px, 86%);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--header-height);
+    }
+
+    body {
+      background: var(--white);
+      color: var(--ink);
+      font-family:
+        "Helvetica Neue",
+        Arial,
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        sans-serif;
+      font-size: 12px;
+      line-height: 2.05;
+      letter-spacing: 0.055em;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    button {
+      color: inherit;
+      font: inherit;
+    }
+
+    .section-label {
+      margin-bottom: 24px;
+      color: #3d3a37;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+    }
+
+    .serif-display {
+      font-family: Didot, "Bodoni 72", Georgia, "Times New Roman", serif;
+      font-weight: 400;
+    }
+
+    .btn,
+    .view-more,
+    .news-all {
+      display: inline-flex;
+      align-items: center;
+      position: relative;
+      padding-bottom: 10px;
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+
+    .btn::after,
+    .view-more::after,
+    .news-all::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 1px;
+      background: currentColor;
+      transform-origin: left;
+      transition: transform 0.35s ease;
+    }
+
+    .btn:hover::after,
+    .view-more:hover::after,
+    .news-all:hover::after {
+      transform: scaleX(0.55);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition:
+        opacity 0.9s ease,
+        transform 0.9s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Header */
+    .header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 1000;
+      height: var(--header-height);
+      background: rgba(255, 255, 255, 0.86);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      backdrop-filter: blur(18px);
+      transition:
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .header.is-scrolled {
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.035);
+    }
+
+    .header-inner {
+      width: var(--content-wide);
+      height: 100%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 270px 1fr;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      width: 210px;
+    }
 
-    :root{
-      --white:#fff;
-      --ink:#151515;
-      --muted:#6d6760;
-      --pale:#f6f2eb;
-      --line:rgba(0,0,0,.1);
-      --dark:#25231f;
-    }
-
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-
-    body{
-      font-family:"Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
-      background:var(--white);
-      color:var(--ink);
-      font-size:12px;
-      line-height:2.05;
-      letter-spacing:.055em;
-      overflow-x:hidden;
-      -webkit-font-smoothing:antialiased;
-    }
-
-    a{color:inherit;text-decoration:none}
-    img{display:block;width:100%;height:100%;object-fit:cover}
-
-    .header{
-      position:fixed;
-      inset:0 0 auto 0;
-      height:76px;
-      z-index:1000;
-      background:rgba(255,255,255,.86);
-      backdrop-filter:blur(18px);
-      border-bottom:1px solid rgba(0,0,0,.04);
-    }
-
-    .header-inner{
-      width:min(1780px,90%);
-      height:76px;
-      margin:0 auto;
-      display:grid;
-      grid-template-columns:270px 1fr;
-      align-items:center;
-      gap:40px;
-    }
-
-    .logo{
-      display:flex;
-      align-items:center;
-      width:210px;
-    }
-
-    .logo img{
-      width:100%;
-      height:auto;
-      object-fit:contain;
-    }
-
-    .nav{
-      display:flex;
-      justify-content:flex-end;
-      align-items:center;
-      gap:clamp(20px,3vw,52px);
-      font-size:9px;
-      letter-spacing:.3em;
-      text-transform:uppercase;
-      color:#151515;
-      font-weight:600;
-      white-space:nowrap;
+    .logo img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
     }
 
-    .nav a{
-      position:relative;
-      padding:8px 0;
-    }
+    .nav {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: clamp(20px, 3vw, 52px);
+      color: #151515;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .nav a {
+      position: relative;
+      padding: 8px 0;
+    }
 
-    .nav a::after{
-      content:"";
-      position:absolute;
-      left:0;
-      bottom:0;
-      width:0;
-      height:1px;
-      background:currentColor;
-      transition:.3s ease;
+    .nav a::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 1px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
     }
 
-    .nav a:hover::after{width:100%}
-
-    .hero{
-      min-height:100vh;
-      display:grid;
-      grid-template-columns:34.5% 65.5%;
-      background:#fff;
+    .nav a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
     }
 
-    .hero-copy{
-      padding:76px 5.4vw;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      position:relative;
-      min-width:0;
+    .menu-button {
+      display: none;
+      width: 34px;
+      height: 34px;
+      padding: 7px 2px;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
     }
 
-    .hero-title{
-      font-family:Didot,"Bodoni 72",Georgia,"Times New Roman",serif;
-      font-size:clamp(56px,6.5vw,110px);
-      font-weight:400;
-      line-height:.95;
-      letter-spacing:.055em;
-      margin-top:54px;
-      margin-bottom:38px;
-      overflow-wrap:normal;
-      word-break:keep-all;
+    .menu-button span {
+      display: block;
+      width: 100%;
+      height: 1px;
+      margin: 6px 0;
+      background: var(--ink);
+      transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
     }
-
-    .hero-title span{display:block}
-
-    .hero-sub{
-      font-size:11px;
-      letter-spacing:.34em;
-      line-height:2.25;
-      text-transform:uppercase;
-      color:#333;
-    }
-
-    .scroll{
-      position:absolute;
-      left:5.4vw;
-      bottom:52px;
-      font-size:9px;
-      letter-spacing:.34em;
-      text-transform:uppercase;
-      color:#3a3a3a;
+
+    .menu-button[aria-expanded="true"] span:first-child {
+      transform: translateY(7px) rotate(45deg);
     }
 
-    .scroll::after{
-      content:"";
-      display:block;
-      width:1px;
-      height:44px;
-      background:#222;
-      margin:12px 0 0 24px;
+    .menu-button[aria-expanded="true"] span:last-child {
+      transform: translateY(-7px) rotate(-45deg);
     }
 
-    .hero-visual{
-      min-height:100vh;
-      overflow:hidden;
-      background:#ddd;
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 34.5% 65.5%;
+      background: var(--white);
     }
 
-    .hero-visual img{
-      filter:saturate(.78) contrast(.96) brightness(.86);
-      animation:slowZoom 18s ease-in-out infinite alternate;
+    .hero-copy {
+      min-width: 0;
+      padding: var(--header-height) 5.4vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
     }
 
-    @keyframes slowZoom{
-      from{transform:scale(1.01)}
-      to{transform:scale(1.065)}
+    .hero-title {
+      margin: 54px 0 38px;
+      font-family: Didot, "Bodoni 72", Georgia, "Times New Roman", serif;
+      font-size: clamp(56px, 6.5vw, 110px);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: 0.055em;
+      word-break: keep-all;
     }
 
-    .about{
-      padding:88px 0 76px;
-      background:#fff;
+    .hero-title span {
+      display: block;
     }
 
-    .about-inner{
-      width:min(1780px,90%);
-      margin:0 auto;
-      display:grid;
-      grid-template-columns:28% 1fr;
-      gap:7vw;
-      align-items:start;
+    .hero-sub {
+      color: #333;
+      font-size: 11px;
+      letter-spacing: 0.34em;
+      line-height: 2.25;
+      text-transform: uppercase;
     }
 
-    .section-label{
-      font-size:9px;
-      letter-spacing:.35em;
-      text-transform:uppercase;
-      color:#3d3a37;
-      font-weight:600;
-      margin-bottom:24px;
+    .scroll {
+      position: absolute;
+      bottom: 52px;
+      left: 5.4vw;
+      color: #3a3a3a;
+      font-size: 9px;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
     }
 
-    .about h2{
-      font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;
-      font-size:clamp(22px,2.2vw,32px);
-      font-weight:400;
-      letter-spacing:.18em;
-      line-height:1.9;
-      margin-bottom:28px;
+    .scroll::after {
+      content: "";
+      display: block;
+      width: 1px;
+      height: 44px;
+      margin: 12px 0 0 24px;
+      background: #222;
     }
 
-    .about p{
-      max-width:410px;
-      color:#36322e;
-      line-height:2.2;
-      font-size:12px;
+    .hero-visual {
+      min-height: 100vh;
+      overflow: hidden;
+      background: #ddd;
     }
 
-    .view-more{
-      display:inline-block;
-      margin-top:38px;
-      font-size:9px;
-      letter-spacing:.32em;
-      text-transform:uppercase;
-      color:#222;
-      position:relative;
-      padding-bottom:12px;
+    .hero-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0.78) contrast(0.96) brightness(0.86);
+      animation: slowZoom 18s ease-in-out infinite alternate;
     }
 
-    .view-more::after{
-      content:"";
-      position:absolute;
-      left:0;
-      bottom:0;
-      width:82px;
-      height:1px;
-      background:#222;
+    @keyframes slowZoom {
+      from { transform: scale(1.01); }
+      to { transform: scale(1.065); }
     }
 
-    .feature-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:40px;
+    /* About */
+    .about {
+      padding: 88px 0 76px;
+      background: var(--white);
     }
 
-    .feature-img{
-      height:270px;
-      background:#ddd;
-      overflow:hidden;
-      margin-bottom:18px;
+    .about-inner {
+      width: var(--content-wide);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 28% 1fr;
+      gap: 7vw;
+      align-items: start;
     }
 
-    .feature-img img{
-      filter:grayscale(.68) contrast(.92);
-      transition:1.3s ease;
+    .about h2 {
+      margin-bottom: 28px;
+      font-family:
+        "Hiragino Mincho ProN",
+        "Yu Mincho",
+        "Noto Serif JP",
+        serif;
+      font-size: clamp(22px, 2.2vw, 32px);
+      font-weight: 400;
+      line-height: 1.9;
+      letter-spacing: 0.18em;
     }
 
-    .feature-card:hover img{
-      transform:scale(1.045);
-      filter:grayscale(.2) contrast(.95);
+    .about p {
+      max-width: 410px;
+      color: #36322e;
+      font-size: 12px;
+      line-height: 2.2;
     }
 
-    .feature-card .en{
-      font-size:9px;
-      letter-spacing:.34em;
-      text-transform:uppercase;
-      color:#222;
-      margin-bottom:4px;
-      font-weight:600;
+    .view-more {
+      margin-top: 38px;
     }
 
-    .feature-card .jp{
-      color:#333;
-      font-size:12px;
-      letter-spacing:.08em;
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
     }
 
-    .arrow{
-      display:block;
-      height:1px;
-      width:26px;
-      background:#222;
-      margin:14px 0 0 auto;
-      position:relative;
+    .feature-img {
+      height: 270px;
+      margin-bottom: 18px;
+      overflow: hidden;
+      background: #ddd;
     }
 
-    .arrow::after{
-      content:"";
-      position:absolute;
-      right:0;
-      top:-3px;
-      width:7px;
-      height:7px;
-      border-top:1px solid #222;
-      border-right:1px solid #222;
-      transform:rotate(45deg);
+    .feature-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(0.68) contrast(0.92);
+      transition:
+        transform 1.3s ease,
+        filter 1.3s ease;
     }
 
-    /* BRANDS */
-    .brands-section{
-      padding:130px 0;
-      background:#fff;
+    .feature-card:hover img {
+      transform: scale(1.045);
+      filter: grayscale(0.2) contrast(0.95);
     }
 
-    .brands-inner{
-      width:min(1780px,90%);
-      margin:0 auto;
+    .feature-card .en {
+      margin-bottom: 4px;
+      color: #222;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
     }
 
-    .brands-head{
-      border-top:1px solid var(--line);
-      padding-top:34px;
-      margin-bottom:80px;
+    .feature-card .jp {
+      color: #333;
+      font-size: 12px;
+      letter-spacing: 0.08em;
     }
 
-    .brands-head h2{
-      font-family:Didot,"Bodoni 72",Georgia,"Times New Roman",serif;
-      font-size:clamp(54px,5vw,86px);
-      font-weight:400;
-      line-height:1;
-      letter-spacing:.05em;
-      margin-bottom:20px;
+    /* Work */
+    .work-section {
+      padding: 140px 0 150px;
+      background: var(--white);
     }
 
-    .brands-head p{
-      max-width:560px;
-      color:var(--muted);
+    .work-inner {
+      width: var(--content);
+      margin: 0 auto;
     }
 
-    .brand-list{
-      display:flex;
-      flex-direction:column;
-      gap:90px;
+    .work-header {
+      margin-bottom: 76px;
+      padding-top: 34px;
+      display: grid;
+      grid-template-columns: 1fr 460px;
+      gap: 80px;
+      align-items: end;
+      border-top: 1px solid var(--line);
     }
 
-    .brand-row{
-      display:flex;
-      flex-direction:column;
-      gap:20px;
+    .work-title-block h2 {
+      font-family: Didot, "Bodoni 72", Georgia, "Times New Roman", serif;
+      font-size: clamp(58px, 7vw, 106px);
+      font-weight: 400;
+      line-height: 0.9;
+      letter-spacing: 0.04em;
     }
 
-    .brand-name{
-      font-family:Didot,"Bodoni 72",Georgia,"Times New Roman",serif;
-      font-size:26px;
-      font-weight:400;
-      line-height:1.2;
-      letter-spacing:.05em;
+    .work-introduction,
+    .work-story-copy p {
+      color: var(--muted);
+      line-height: 2.25;
     }
 
-    .brand-image{
-      width:100%;
-      overflow:hidden;
-      background:#f3f3f3;
+    .work-story {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: clamp(60px, 7vw, 120px);
+      align-items: center;
     }
 
-    .brand-image img{
-      width:100%;
-      height:auto;
-      object-fit:contain;
-      object-position:center;
-      transition:transform 1.4s ease;
+    .work-main-image {
+      height: 720px;
+      overflow: hidden;
+      background: #ddd;
     }
 
-    .brand-row:hover .brand-image img{
-      transform:scale(1.015);
+    .work-main-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 1.4s ease;
     }
 
-    /* SHOP */
-    .shop-section{
-      padding:120px 0;
-      background:#fff;
+    .work-main-image:hover img {
+      transform: scale(1.025);
     }
 
-    .shop-banner{
-      position:relative;
-      display:block;
-      width:min(1500px,86%);
-      margin:0 auto;
-      overflow:hidden;
-      color:#fff;
-      background:#111;
+    .work-story-copy {
+      max-width: 540px;
     }
 
-    .shop-banner img{
-      width:100%;
-      height:560px;
-      object-fit:cover;
-      object-position:center;
-      filter:brightness(.78);
-      transition:transform 1.2s ease, filter .4s ease;
+    .work-story-copy h3 {
+      margin-bottom: 38px;
+      font-family: Didot, "Bodoni 72", Georgia, "Times New Roman", serif;
+      font-size: clamp(48px, 5vw, 80px);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 0.035em;
     }
 
-    .shop-banner:hover img{
-      transform:scale(1.025);
-      filter:brightness(.68);
+    .work-story-copy p {
+      margin-bottom: 20px;
     }
 
-    .shop-overlay{
-      position:absolute;
-      left:60px;
-      bottom:54px;
+    /* Brands */
+    .brands-section {
+      padding: 130px 0;
+      background: var(--white);
     }
 
-    .shop-overlay .section-label{
-      color:#fff;
-      margin-bottom:14px;
+    .brands-inner {
+      width: var(--content-wide);
+      margin: 0 auto;
     }
 
-    .shop-overlay h2{
-      font-family:Didot,"Bodoni 72",Georgia,"Times New Roman",serif;
-      font-size:clamp(48px,5.4vw,82px);
-      font-weight:400;
-      line-height:1;
-      letter-spacing:.04em;
-      margin-bottom:18px;
+    .brands-head {
+      margin-bottom: 80px;
+      padding-top: 34px;
+      display: grid;
+      grid-template-columns: 1fr minmax(280px, 560px);
+      gap: 60px;
+      align-items: end;
+      border-top: 1px solid var(--line);
     }
 
-    .shop-overlay span{
-      display:inline-block;
-      padding-bottom:7px;
-      border-bottom:1px solid rgba(255,255,255,.85);
-      font-size:9px;
-      letter-spacing:.28em;
-      text-transform:uppercase;
+    .brands-head h2 {
+      margin-bottom: 20px;
+      font-family: Didot, "Bodoni 72", Georgia, "Times New Roman", serif;
+      font-size: clamp(54px, 5vw, 86px);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 0.05em;
     }
 
-    .partners{
-      background:var(--pale);
-      padding:32px 0;
-      border-top:1px solid var(--line);
-      border-bottom:1px solid var(--line);
+    .brands-head p {
+      color: var(--muted);
     }
 
-    .partners-inner{
-      width:min(1780px,90%);
-      margin:0 auto;
-      display:grid;
-      grid-template-columns:210px 1fr 100px;
-      align-items:center;
-      gap:44px;
+    .brand-list {
+      display: flex;
+      flex-direction: column;
+      gap: 90px;
     }
 
-    .partners-label{
-      font-size:9px;
-      letter-spacing:.34em;
-      text-transform:uppercase;
-      color:#47423d;
+    .brand-link,
+    .brand-row {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
 
-    .partner-list{
-      display:grid;
-      grid-template-columns:repeat(6,1fr);
-      align-items:center;
-      gap:32px;
-      text-align:center;
-      color:#555;
+    .brand-name {
+      font-family: Didot, "Bodoni 72", Georgia, "Times New Roman", serif;
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: 0.05em;
     }
 
-    .partner{
-      font-family:Georgia,"Times New Roman",serif;
-      font-size:clamp(17px,1.5vw,28px);
-      letter-spacing:.18em;
-      line-height:1.1;
-      text-transform:uppercase;
-      opacity:.88;
-    }
-
-    .partner small{
-      display:block;
-      font-family:"Helvetica Neue",Arial,sans-serif;
-      font-size:8px;
-      letter-spacing:.28em;
-      margin-top:6px;
-    }
-
-    .and-more{
-      font-size:9px;
-      letter-spacing:.12em;
-      color:#555;
-      position:relative;
-      padding-right:52px;
-    }
-
-    .and-more::after{
-      content:"";
-      position:absolute;
-      right:0;
-      top:50%;
-      width:42px;
-      height:1px;
-      background:#777;
-    }
-
-    /* WORKS
---------------------------------------------- */
-
-.work-section{
-  padding:140px 0 150px;
-  background:#fff;
-}
-
-.work-inner{
-  width:min(1500px,86%);
-  margin:0 auto;
-}
-
-.work-header{
-  display:grid;
-  grid-template-columns:1fr 460px;
-  gap:80px;
-  align-items:end;
-  padding-top:34px;
-  margin-bottom:76px;
-  border-top:1px solid var(--line);
-}
-
-.work-title-block h2{
-  font-family:Didot,"Bodoni 72",Georgia,"Times New Roman",serif;
-  font-size:clamp(58px,7vw,106px);
-  font-weight:400;
-  line-height:.9;
-  letter-spacing:.04em;
-}
-
-.work-introduction{
-  color:var(--muted);
-  line-height:2.25;
-}
-
-.work-story{
-  display:grid;
-  grid-template-columns:1.05fr .95fr;
-  gap:clamp(60px,7vw,120px);
-  align-items:center;
-}
-
-.work-main-image{
-  height:720px;
-  overflow:hidden;
-  background:#ddd;
-}
-
-.work-main-image img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center;
-  transition:transform 1.4s ease;
-}
-
-.work-main-image:hover img{
-  transform:scale(1.025);
-}
-
-.work-story-copy{
-  max-width:540px;
-}
-
-.work-story-copy h3{
-  font-family:Didot,"Bodoni 72",Georgia,"Times New Roman",serif;
-  font-size:clamp(48px,5vw,80px);
-  font-weight:400;
-  line-height:1;
-  letter-spacing:.035em;
-  margin-bottom:38px;
-}
+    .brand-image {
+      width: 100%;
+      overflow: hidden;
+      background: #f3f3f3;
+    }
 
-.work-story-copy p{
-  color:var(--muted);
-  line-height:2.25;
-  margin-bottom:20px;
-}
-/* WORKS TABLET */
-
-@media(max-width:820px){
-
-  .work-section{
-    padding:96px 0 105px;
-  }
-
-  .work-header,
-  .work-story,
-  .work-gallery-header{
-    grid-template-columns:1fr;
-  }
-
-  .work-header{
-    gap:28px;
-    margin-bottom:52px;
-  }
+    .brand-image img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      object-position: center;
+      transition: transform 1.4s ease;
+    }
 
-  .work-story{
-    gap:50px;
-  }
-
-  .work-main-image{
-    height:560px;
-  }
-}
+    .brand-row:hover .brand-image img {
+      transform: scale(1.015);
+    }
 
-/* WORKS MOBILE */
-
-@media(max-width:540px){
-
-  .work-section{
-    padding:78px 0 84px;
-  }
+    /* Shop */
+    .shop-section {
+      padding: 120px 0;
+      background: var(--white);
+    }
 
-  .work-inner{
-    width:90%;
-  }
-
-  .work-header{
-    margin-bottom:42px;
-  }
+    .shop-banner {
+      display: block;
+      position: relative;
+      width: var(--content);
+      margin: 0 auto;
+      overflow: hidden;
+      background: #111;
+      color: var(--white);
+    }
 
-  .work-title-block h2{
-    font-size:58px;
-  }
+    .shop-banner > img {
+      width: 100%;
+      height: 560px;
+      object-fit: cover;
+      object-position: center;
+      filter: brightness(0.78);
+      transition:
+        transform 1.2s ease,
+        filter 0.4s ease;
+    }
 
-  .work-main-image{
-    height:450px;
-  }
+    .shop-banner:hover > img {
+      transform: scale(1.025);
+      filter: brightness(0.68);
+    }
 
-  .work-story-copy h3{
-    font-size:44px;
-    line-height:1.02;
-  }
-}
+    .shop-overlay {
+      position: absolute;
+      bottom: 54px;
+      left: 60px;
+    }
 
-    .fanbrand{
-      background:#25231f;
-      color:#fff;
-      padding:118px 0;
+    .shop-overlay .section-label {
+      margin-bottom: 14px;
+      color: var(--white);
     }
 
-    .fanbrand-inner{
-      width:min(1500px,86%);
-      margin:0 auto;
-      display:grid;
-      grid-template-columns:.9fr 1.1fr;
-      gap:74px;
-      align-items:center;
+    .shop-overlay h2 {
+      margin-bottom: 18px;
+      font-family: Didot, "Bodoni 72", Georgia, "Times New Roman", serif;
+      font-size: clamp(48px, 5.4vw, 82px);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 0.04em;
     }
 
-    .fanbrand h2{
-      font-family:Didot,"Bodoni 72",Georgia,"Times New Roman",serif;
-      font-size:clamp(54px,6.4vw,106px);
-      font-weight:400;
-      line-height:.95;
-      letter-spacing:.04em;
-      margin-bottom:26px;
+    .shop-overlay span {
+      display: inline-block;
+      padding-bottom: 7px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.85);
+      font-size: 9px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
     }
 
-    .fanbrand p{
-      color:rgba(255,255,255,.72);
-      max-width:510px;
-      margin-bottom:34px;
+    /* Create */
+    .create {
+      padding: 118px 0;
+      background: var(--dark);
+      color: var(--white);
     }
 
-    .fanbrand-img{
-      height:620px;
-      overflow:hidden;
-      background:#555;
+    .create-inner {
+      width: var(--content);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 74px;
+      align-items: center;
     }
 
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      gap:18px;
-      font-size:9px;
-      letter-spacing:.32em;
-      text-transform:uppercase;
-      padding-bottom:11px;
-      border-bottom:1px solid currentColor;
+    .create .section-label {
+      color: rgba(255, 255, 255, 0.86);
     }
 
-    /* NEWS */
-    .news-section{
-      padding:120px 0;
-      background:var(--pale);
+    .create h2 {
+      margin-bottom: 26px;
+      font-family: Didot, "Bodoni 72", Georgia, "Times New Roman", serif;
+      font-size: clamp(54px, 6.4vw, 106px);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: 0.04em;
     }
 
-    .news-inner{
-      width:min(1500px,86%);
-      margin:0 auto;
+    .create p {
+      max-width: 510px;
+      margin-bottom: 34px;
+      color: rgba(255, 255, 255, 0.72);
     }
 
-    .news-head{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-end;
-      gap:40px;
-      padding-top:32px;
-      margin-bottom:46px;
-      border-top:1px solid var(--line);
+    .create-img {
+      height: 620px;
+      overflow: hidden;
+      background: #555;
     }
 
-    .news-head h2{
-      font-family:Didot,"Bodoni 72",Georgia,"Times New Roman",serif;
-      font-size:clamp(48px,5.5vw,88px);
-      font-weight:400;
-      line-height:1;
-      letter-spacing:.04em;
+    .create-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1.3s ease;
     }
 
-    .news-all{
-      display:inline-block;
-      padding-bottom:9px;
-      border-bottom:1px solid currentColor;
-      font-size:9px;
-      letter-spacing:.28em;
-      text-transform:uppercase;
+    .create:hover .create-img img {
+      transform: scale(1.025);
     }
 
-    .top-news-list{
-      border-top:1px solid var(--line);
+    /* News */
+    .news-section {
+      padding: 120px 0;
+      background: var(--pale);
     }
 
-    .top-news-item{
-      display:grid;
-      grid-template-columns:150px 150px 1fr 40px;
-      gap:28px;
-      align-items:center;
-      padding:28px 0;
-      border-bottom:1px solid var(--line);
-      transition:.3s ease;
+    .news-inner {
+      width: var(--content);
+      margin: 0 auto;
     }
 
-    .top-news-item:hover{
-      padding-left:10px;
+    .news-head {
+      margin-bottom: 46px;
+      padding-top: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 40px;
+      border-top: 1px solid var(--line);
     }
 
-    .top-news-date{
-      font-family:Georgia,"Times New Roman",serif;
-      font-size:13px;
-      color:#57514b;
+    .news-head h2 {
+      font-family: Didot, "Bodoni 72", Georgia, "Times New Roman", serif;
+      font-size: clamp(48px, 5.5vw, 88px);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 0.04em;
     }
 
-    .top-news-category{
-      font-size:8px;
-      letter-spacing:.22em;
-      text-transform:uppercase;
-      color:#77716a;
+    .top-news-list {
+      border-top: 1px solid var(--line);
     }
 
-    .top-news-title{
-      font-size:13px;
-      letter-spacing:.06em;
+    .top-news-item {
+      padding: 28px 0;
+      display: grid;
+      grid-template-columns: 150px 150px 1fr 40px;
+      gap: 28px;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      transition: padding 0.3s ease;
     }
 
-    .top-news-arrow{
-      position:relative;
-      justify-self:end;
-      width:28px;
-      height:1px;
-      background:#222;
+    .top-news-item:hover {
+      padding-left: 10px;
     }
 
-    .top-news-arrow::after{
-      content:"";
-      position:absolute;
-      right:0;
-      top:-3px;
-      width:7px;
-      height:7px;
-      border-top:1px solid #222;
-      border-right:1px solid #222;
-      transform:rotate(45deg);
+    .top-news-date {
+      color: #57514b;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 13px;
     }
 
-    .contact{
-      padding:136px 0;
-      text-align:center;
-      background:#fff;
+    .top-news-category {
+      color: #77716a;
+      font-size: 8px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
     }
 
-    .contact h2{
-      font-family:Didot,"Bodoni 72",Georgia,"Times New Roman",serif;
-      font-size:clamp(48px,6vw,96px);
-      font-weight:400;
-      letter-spacing:.05em;
-      line-height:1;
-      margin-bottom:28px;
+    .top-news-title {
+      font-size: 13px;
+      letter-spacing: 0.06em;
     }
 
-    .contact p{
-      color:var(--muted);
-      max-width:580px;
-      margin:0 auto 32px;
+    .top-news-arrow {
+      position: relative;
+      width: 28px;
+      height: 1px;
+      justify-self: end;
+      background: #222;
     }
 
-    footer{
-      padding:28px 0;
-      border-top:1px solid var(--line);
-      color:#777;
-      font-size:10px;
-      letter-spacing:.08em;
+    .top-news-arrow::after {
+      content: "";
+      position: absolute;
+      top: -3px;
+      right: 0;
+      width: 7px;
+      height: 7px;
+      border-top: 1px solid #222;
+      border-right: 1px solid #222;
+      transform: rotate(45deg);
     }
 
-    .footer-inner{
-      width:min(1780px,90%);
-      margin:0 auto;
-      display:flex;
-      justify-content:space-between;
-      gap:24px;
-      flex-wrap:wrap;
+    /* Contact */
+    .contact {
+      padding: 136px 0;
+      background: var(--white);
+      text-align: center;
     }
 
-    .reveal{
-      opacity:0;
-      transform:translateY(24px);
-      transition:1s ease;
+    .contact h2 {
+      margin-bottom: 28px;
+      font-family: Didot, "Bodoni 72", Georgia, "Times New Roman", serif;
+      font-size: clamp(48px, 6vw, 96px);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 0.05em;
     }
 
-    .reveal.show{
-      opacity:1;
-      transform:translateY(0);
+    .contact p {
+      max-width: 580px;
+      margin: 0 auto 32px;
+      color: var(--muted);
     }
 
-    @media(max-width:1100px){
-      .nav{gap:18px;letter-spacing:.22em}
-      .hero{grid-template-columns:40% 60%}
-      .about-inner{grid-template-columns:1fr}
-      .feature-grid{gap:22px}
-      .partners-inner{grid-template-columns:1fr}
-      .partner-list{grid-template-columns:repeat(3,1fr)}
+    /* Footer */
+    footer {
+      padding: 28px 0;
+      border-top: 1px solid var(--line);
+      color: #777;
+      font-size: 10px;
+      letter-spacing: 0.08em;
     }
 
-    @media(max-width:820px){
-      .header,.header-inner{height:64px}
-      .header-inner{grid-template-columns:1fr auto}
-      .logo{width:174px}
-      .nav{display:none}
+    .footer-inner {
+      width: var(--content-wide);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
 
-      .hero{
-        grid-template-columns:1fr;
-        min-height:auto;
+    /* Tablet */
+    @media (max-width: 1100px) {
+      .nav {
+        gap: 18px;
+        letter-spacing: 0.22em;
       }
 
-      .hero-copy{
-        min-height:55vh;
-        padding:110px 8vw 56px;
-        order:1;
+      .hero {
+        grid-template-columns: 40% 60%;
       }
 
-      .hero-visual{
-        min-height:58vh;
-        order:2;
+      .about-inner {
+        grid-template-columns: 1fr;
       }
 
-      .hero-title{
-        font-size:clamp(58px,16vw,96px);
+      .feature-grid {
+        gap: 22px;
       }
 
-      .scroll{display:none}
-
-     .feature-grid{
-  grid-template-columns:1fr;
-}
-
-     .shop-banner img{
-  height:460px;
-}
-      .top-news-item{
-        grid-template-columns:110px 1fr 30px;
-      }
-
-      .top-news-category{
-        display:none;
+      .brands-head {
+        grid-template-columns: 1fr;
       }
     }
 
-    @media(max-width:540px){
-      .logo{width:150px}
-
-      .hero-title{
-        font-size:clamp(50px,15vw,76px);
-        letter-spacing:.03em;
+    @media (max-width: 820px) {
+      :root {
+        --header-height: 64px;
+        --content: 90%;
       }
 
-      .hero-sub{
-        font-size:9px;
-        letter-spacing:.25em;
+      .header-inner {
+        grid-template-columns: 1fr auto;
       }
 
-      .about{padding:72px 0}
-      .about h2{font-size:22px}
-      .feature-img{height:230px}
-
-      .brands-section{padding:80px 0}
-      .brands-head{margin-bottom:50px}
-      .brands-head h2{font-size:52px}
-      .brands-head p{margin-top:18px}
-      .brand-list{gap:52px}
-      .brand-row{gap:14px}
-      .brand-name{font-size:20px}
-
-      .shop-section{padding:80px 0}
-      .shop-banner{width:90%}
-      .shop-banner img{height:330px}
-      .shop-overlay{left:26px;bottom:26px}
-      .shop-overlay h2{font-size:48px}
-
-      .partner-list{grid-template-columns:1fr 1fr}
-      
-      .news-section{padding:76px 0}
-      .news-head{display:block}
-      .news-all{margin-top:24px}
-
-      .top-news-item{
-        grid-template-columns:1fr 28px;
-        gap:6px 18px;
-        padding:24px 0;
+      .logo {
+        width: 174px;
       }
 
-      .top-news-date{
-        grid-column:1;
-        font-size:11px;
+      .menu-button {
+        display: block;
+        z-index: 1002;
       }
 
-      .top-news-title{
-        grid-column:1;
-        font-size:12px;
+      .nav {
+        position: fixed;
+        inset: var(--header-height) 0 0;
+        padding: 48px 8vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 22px;
+        background: rgba(255, 255, 255, 0.98);
+        font-size: 11px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-12px);
+        transition:
+          opacity 0.3s ease,
+          visibility 0.3s ease,
+          transform 0.3s ease;
       }
 
-      .top-news-arrow{
-        grid-column:2;
-        grid-row:1 / 3;
+      .nav.is-open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .hero {
+        min-height: auto;
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        min-height: 55vh;
+        padding: 110px 8vw 56px;
+        order: 1;
+      }
+
+      .hero-visual {
+        min-height: 58vh;
+        order: 2;
+      }
+
+      .hero-title {
+        font-size: clamp(58px, 16vw, 96px);
+      }
+
+      .scroll {
+        display: none;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .work-section {
+        padding: 96px 0 105px;
+      }
+
+      .work-header,
+      .work-story {
+        grid-template-columns: 1fr;
+      }
+
+      .work-header {
+        gap: 28px;
+        margin-bottom: 52px;
+      }
+
+      .work-story {
+        gap: 50px;
+      }
+
+      .work-main-image {
+        height: 560px;
+      }
+
+      .create-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .create-img {
+        height: 520px;
+      }
+
+      .top-news-item {
+        grid-template-columns: 110px 1fr 30px;
+      }
+
+      .top-news-category {
+        display: none;
       }
     }
 
+    /* Mobile */
+    @media (max-width: 540px) {
+      .logo {
+        width: 150px;
+      }
+
+      .hero-title {
+        font-size: clamp(50px, 15vw, 76px);
+        letter-spacing: 0.03em;
+      }
+
+      .hero-sub {
+        font-size: 9px;
+        letter-spacing: 0.25em;
+      }
+
+      .about {
+        padding: 72px 0;
+      }
+
+      .about h2 {
+        font-size: 22px;
+      }
+
+      .feature-img {
+        height: 230px;
+      }
+
+      .work-section {
+        padding: 78px 0 84px;
+      }
+
+      .work-header {
+        margin-bottom: 42px;
+      }
+
+      .work-title-block h2 {
+        font-size: 58px;
+      }
+
+      .work-main-image {
+        height: 450px;
+      }
+
+      .work-story-copy h3 {
+        font-size: 44px;
+        line-height: 1.02;
+      }
+
+      .brands-section {
+        padding: 80px 0;
+      }
+
+      .brands-head {
+        margin-bottom: 50px;
+      }
+
+      .brands-head h2 {
+        font-size: 52px;
+      }
+
+      .brand-list {
+        gap: 52px;
+      }
+
+      .brand-link,
+      .brand-row {
+        gap: 14px;
+      }
+
+      .brand-name {
+        font-size: 20px;
+      }
+
+      .shop-section {
+        padding: 80px 0;
+      }
+
+      .shop-banner > img {
+        height: 330px;
+      }
+
+      .shop-overlay {
+        bottom: 26px;
+        left: 26px;
+      }
+
+      .shop-overlay h2 {
+        font-size: 48px;
+      }
+
+      .create {
+        padding: 82px 0;
+      }
+
+      .create h2 {
+        font-size: 54px;
+      }
+
+      .create-img {
+        height: 390px;
+      }
+
+      .news-section {
+        padding: 76px 0;
+      }
+
+      .news-head {
+        display: block;
+      }
+
+      .news-all {
+        margin-top: 24px;
+      }
+
+      .top-news-item {
+        padding: 24px 0;
+        grid-template-columns: 1fr 28px;
+        gap: 6px 18px;
+      }
+
+      .top-news-date {
+        grid-column: 1;
+        font-size: 11px;
+      }
+
+      .top-news-title {
+        grid-column: 1;
+        font-size: 12px;
+      }
+
+      .top-news-arrow {
+        grid-column: 2;
+        grid-row: 1 / 3;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
   </style>
 </head>
 
 <body>
-  <header class="header">
+  <header class="header" id="site-header">
     <div class="header-inner">
-      <a class="logo" href="#top" aria-label="après-demain">
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPoAAAAlCAYAAABrhPTHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYxIDY0LjE0MDk0OSwgMjAxMC8xMi8wNy0xMDo1NzowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNS4xIE1hY2ludG9zaCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpFMDc4NUYwNEM2M0MxMUU0QThCN0YzRUU1OUE1NzUyMCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpFNTRFNzNBQUM2M0QxMUU0QThCN0YzRUU1OUE1NzUyMCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkUwNzg1RjAyQzYzQzExRTRBOEI3RjNFRTU5QTU3NTIwIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkUwNzg1RjAzQzYzQzExRTRBOEI3RjNFRTU5QTU3NTIwIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+apm0QQAACIRJREFUeNrsXUtu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" alt="après-demain logo" />
+      <a class="logo" href="#top" aria-label="après-demain トップへ">
+        <img src="logo1.png" alt="après-demain">
       </a>
-      <nav class="nav">
-        <a href="#about">About</a><a href="#work">Work</a><a href="#brands">Brands</a><a href="#shop">Shop</a><a href="#create">CREATE</a><a href="news/">News</a><a href="#contact">Contact</a>
+
+      <nav class="nav" id="global-nav" aria-label="メインナビゲーション">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#brands">Brands</a>
+        <a href="#shop">Shop</a>
+        <a href="#create">Create</a>
+        <a href="news/">News</a>
+        <a href="#contact">Contact</a>
       </nav>
+
+      <button
+        class="menu-button"
+        type="button"
+        aria-label="メニューを開く"
+        aria-controls="global-nav"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
 
   <main id="top">
-    <section class="hero">
+    <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy reveal">
-        <h1 class="hero-title"><span>Crafting</span><span>Brands.</span></h1>
-        <p class="hero-sub">FROM CONCEPT TO CREATION.<br>TIMELESS FASHION.</p>
-        <div class="scroll">Scroll</div>
+        <h1 class="hero-title" id="hero-title">
+          <span>Crafting</span>
+          <span>Brands.</span>
+        </h1>
+
+        <p class="hero-sub">
+          From concept to creation.<br>
+          Timeless fashion.
+        </p>
+
+        <div class="scroll" aria-hidden="true">Scroll</div>
       </div>
-      <div class="hero-visual"><img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1800&q=88" alt=""></div>
+
+      <div class="hero-visual">
+        <img
+          src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1800&q=88"
+          alt="ファッションを身にまとう女性"
+        >
+      </div>
     </section>
 
-    <section class="about" id="about">
+    <section class="about" id="about" aria-labelledby="about-title">
       <div class="about-inner">
         <div class="about-copy reveal">
           <div class="section-label">About us</div>
-          <h2>ブランドを、企画から生産まで。</h2>
-          <p>アプレドゥマンは、企画・デザイン・素材開発から、生産・品質管理・販売戦略までを一貫して手がけるファッションカンパニーです。</p>
-          <a href="about.html" class="view-more">
-    VIEW MORE
-</a>
+
+          <h2 id="about-title">ブランドを、企画から生産まで。</h2>
+
+          <p>
+            アプレドゥマンは、企画・デザイン・素材開発から、
+            生産・品質管理・販売戦略までを一貫して手がける
+            ファッションカンパニーです。
+          </p>
+
+          <a href="about.html" class="view-more">View more</a>
         </div>
+
         <div class="feature-grid">
+          <article class="feature-card reveal">
+            <div class="feature-img">
+              <img
+                src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=900&q=88"
+                alt="企画・デザイン"
+                loading="lazy"
+              >
+            </div>
+            <div class="en">Planning &amp; Design</div>
+            <div class="jp">企画・デザイン</div>
+          </article>
 
-  <div class="feature-card reveal">
-    <div class="feature-img">
-      <img
-        src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=900&q=88"
-        alt="企画・デザイン"
-      >
-    </div>
-    <div class="en">Planning &amp; Design</div>
-    <div class="jp">企画・デザイン</div>
-  </div>
+          <article class="feature-card reveal">
+            <div class="feature-img">
+              <img
+                src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=900&q=88"
+                alt="素材開発"
+                loading="lazy"
+              >
+            </div>
+            <div class="en">Material &amp; Development</div>
+            <div class="jp">素材開発</div>
+          </article>
 
-  <div class="feature-card reveal">
-    <div class="feature-img">
-      <img
-        src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=900&q=88"
-        alt="素材開発"
-      >
-    </div>
-    <div class="en">Material &amp; Development</div>
-    <div class="jp">素材開発</div>
-  </div>
-
-  <div class="feature-card reveal">
-    <div class="feature-img">
-      <img
-        src="images/production.jpg"
-        alt="生産・品質管理"
-      >
-    </div>
-    <div class="en">Production</div>
-    <div class="jp">生産・品質管理</div>
-  </div>
-
-</div>
+          <article class="feature-card reveal">
+            <div class="feature-img">
+              <img
+                src="images/production.jpg"
+                alt="生産・品質管理"
+                loading="lazy"
+              >
+            </div>
+            <div class="en">Production</div>
+            <div class="jp">生産・品質管理</div>
+          </article>
+        </div>
       </div>
     </section>
 
+    <section class="work-section" id="work" aria-labelledby="work-title">
+      <div class="work-inner">
+        <div class="work-header reveal">
+          <div class="work-title-block">
+            <div class="section-label">Selected works</div>
+            <h2 id="work-title">Works</h2>
+          </div>
 
-    <section id="brands" class="brands-section">
+          <p class="work-introduction">
+            百貨店、有力セレクトショップ、著名人着用、
+            ECランキングなど、ブランドの世界観を大切にしながら、
+            多様な場所へファッションを届けてきました。
+          </p>
+        </div>
+
+        <div class="work-story">
+          <div class="work-main-image reveal">
+            <img
+              src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=1400&q=88"
+              alt="アプレドゥマンのファッションスタイル"
+              loading="lazy"
+            >
+          </div>
+
+          <div class="work-story-copy reveal">
+            <div class="section-label">From après-demain</div>
+
+            <h3>
+              For women who<br>
+              stand in front<br>
+              of people.
+            </h3>
+
+            <p>
+              30〜50代の都心部に住む女性を中心に、
+              講演会、歌手、アナウンサーなど、
+              人前に出る機会の多い方へ向けた服を提案しています。
+            </p>
+
+            <p>
+              華やかさと心地よさを両立し、
+              着る人の個性と自信を引き立てること。
+              それが、私たちの服づくりです。
+            </p>
+
+            <p>
+              素材、シルエット、着心地、見え方。
+              一つひとつの要素を丁寧に重ね、
+              日常と特別な場面のあいだにある一着を形にします。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="brands-section" id="brands" aria-labelledby="brands-title">
       <div class="brands-inner">
+        <div class="brands-head reveal">
+          <div>
+            <div class="section-label">Original collections</div>
+            <h2 id="brands-title">Brands</h2>
+          </div>
 
-    <div class="brands-head">
-      <div>
-        <div class="section-label">Original collections</div>
-        <h2>Brands</h2>
+          <p>
+            自社で展開する4つのブランド。
+            それぞれの女性像と世界観を、
+            企画・素材・シルエットから丁寧に形にしています。
+          </p>
+        </div>
+
+        <div class="brand-list">
+          <article class="brand-row reveal">
+            <a
+              href="https://share.google/vN0pkUTEeXEM7u7nn"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="brand-link"
+              aria-label="Masaco Teranishiのブランドページを開く"
+            >
+              <div class="brand-name">Masaco Teranishi</div>
+              <div class="brand-image">
+                <img
+                  src="images/masaco.jpg"
+                  alt="Masaco Teranishi"
+                  loading="lazy"
+                >
+              </div>
+            </a>
+          </article>
+
+          <article class="brand-row reveal">
+            <div class="brand-name">troisiemechaco</div>
+            <div class="brand-image">
+              <img
+                src="images/troisiemechaco.jpg"
+                alt="troisiemechaco"
+                loading="lazy"
+              >
+            </div>
+          </article>
+
+          <article class="brand-row reveal">
+            <div class="brand-name">NorAh</div>
+            <div class="brand-image">
+              <img
+                src="images/norah.png"
+                alt="NorAh"
+                loading="lazy"
+              >
+            </div>
+          </article>
+
+          <article class="brand-row reveal">
+            <div class="brand-name">SERENE</div>
+            <div class="brand-image">
+              <img
+                src="images/serene.jpg"
+                alt="SERENE"
+                loading="lazy"
+              >
+            </div>
+          </article>
+        </div>
       </div>
+    </section>
 
-      <p>
-        自社で展開する4つのブランド。
-        それぞれの女性像と世界観を、
-        企画・素材・シルエットから丁寧に形にしています。
-      </p>
-    </div>
-
-    <div class="brand-list">
-
-      <article class="brand-row reveal">
-
-  <a
-    href="https://share.google/vN0pkUTEeXEM7u7nn"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="brand-link"
-  >
-
-    <div class="brand-name">
-      Masaco Teranishi
-    </div>
-
-    <div class="brand-image">
-      <img
-        src="images/masaco.jpg"
-        alt="masaco teranishi"
+    <section class="shop-section" id="shop" aria-labelledby="shop-title">
+      <a
+        class="shop-banner reveal"
+        href="https://masacoterani.official.ec/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="公式オンラインストアを開く"
       >
-    </div>
-
-  </a>
-
-</article>
-      <article class="brand-row reveal">
-        <div class="brand-name">troisiemechaco</div>
-
-        <div class="brand-image">
-          <img src="images/troisiemechaco.jpg" alt="troisiemechaco">
-        </div>
-      </article>
-
-      <article class="brand-row reveal">
-        <div class="brand-name">NorAh</div>
-
-        <div class="brand-image">
-          <img src="images/norah.png" alt="NorAh">
-        </div>
-      </article>
-
-      <article class="brand-row reveal">
-        <div class="brand-name">SERENE</div>
-
-        <div class="brand-image">
-          <img src="images/serene.jpg" alt="SERENE">
-        </div>
-      </article>
-
-      </div>
-    </section>
-    
-<section class="shop-section">
-
-  <a
-    class="shop-banner"
-    href="https://masacoterani.official.ec/"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-
-    <img src="images/shop.jpg" alt="Official Online Store">
-
-    <div class="shop-overlay">
-
-      <div class="section-label">
-        Official Online Store
-      </div>
-
-      <h2>SHOP</h2>
-
-      <span>Shop Now ↗</span>
-
-    </div>
-
-  </a>
-
-</section>
-    <section class="partners">
-      <div class="partners-inner">
-        <div class="partners-label">Selected partners</div>
-        <div class="partner-list">
-          <div class="partner">ISETAN<small>SHINJUKU</small></div><div class="partner">BARNEYS<small>NEW YORK</small></div><div class="partner" style="font-family:Helvetica Neue,Arial,sans-serif;font-size:13px;">UNITED ARROWS</div><div class="partner" style="font-family:Helvetica Neue,Arial,sans-serif;font-weight:700;">BEAMS</div><div class="partner" style="font-family:Helvetica Neue,Arial,sans-serif;">SHIPS</div><div class="partner" style="font-family:Helvetica Neue,Arial,sans-serif;font-size:13px;">TOMORROWLAND</div>
-        </div>
-        <div class="and-more">and more</div>
-      </div>
-    </section>
-
-    <section class="work-section" id="work">
-  <div class="work-inner">
-
-    <div class="work-header reveal">
-      <div class="work-title-block">
-        <div class="section-label">Selected works</div>
-        <h2>Works</h2>
-      </div>
-
-      <p class="work-introduction">
-        百貨店、有力セレクトショップ、著名人着用、
-        ECランキングなど、ブランドの世界観を大切にしながら、
-        多様な場所へファッションを届けてきました。
-      </p>
-    </div>
-
-    <div class="work-story">
-
-      <div class="work-main-image reveal">
         <img
-          src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=1400&q=88"
-          alt="アプレドゥマンのファッションスタイル"
+          src="images/shop.jpg"
+          alt="Official Online Store"
+          loading="lazy"
         >
-      </div>
 
-      <div class="work-story-copy reveal">
-        <div class="section-label">From après-demain</div>
+        <div class="shop-overlay">
+          <div class="section-label">Official Online Store</div>
+          <h2 id="shop-title">Shop</h2>
+          <span>Shop now ↗</span>
+        </div>
+      </a>
+    </section>
 
-        <h3>
-          For women who<br>
-          stand in front<br>
-          of people.
-        </h3>
+    <section class="create" id="create" aria-labelledby="create-title">
+      <div class="create-inner">
+        <div class="create-copy reveal">
+          <div class="section-label">Create</div>
 
-        <p>
-          30〜50代の都心部に住む女性を中心に、
-          講演会、歌手、アナウンサーなど、
-          人前に出る機会の多い方へ向けた服を提案しています。
-        </p>
+          <h2 id="create-title">
+            Create<br>
+            Your Brand.
+          </h2>
 
-        <p>
-          華やかさと心地よさを両立し、
-          着る人の個性と自信を引き立てること。
-          それが、私たちの服づくりです。
-        </p>
+          <p>
+            アイデアをブランドへ。企画・デザイン・OEM / ODM・
+            生産管理・販売戦略まで。アプレドゥマンは、
+            一貫したブランドプロデュースを通じて、
+            新しいブランドの価値を創造します。
+          </p>
 
-        <p>
-          素材、シルエット、着心地、見え方。
-          一つひとつの要素を丁寧に重ね、
-          日常と特別な場面のあいだにある一着を形にします。
-        </p>
-      </div>
-  </div>
-</section>
+          <a class="btn" href="#contact">View more</a>
+        </div>
 
-    <section class="fanbrand" id="create">
-      <div class="fanbrand-inner">
-        <div class="fanbrand-copy reveal"><div class="section-label">
-    CREATE
-</div>
-
-<h2>
-    Create<br>
-    Your Brand.
-</h2><p>アイデアをブランドへ。企画・デザイン・OEM / ODM・生産管理・販売戦略まで。
-アプレドゥマンは、一貫したブランドプロデュースを通じて、
-新しいブランドの価値を創造します。</p><a class="btn" href="#">VIEW MORE</a></div>
-        <div class="fanbrand-img reveal"><img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?auto=format&fit=crop&w=1200&q=88" alt=""></div>
+        <div class="create-img reveal">
+          <img
+            src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?auto=format&fit=crop&w=1200&q=88"
+            alt="ブランドづくりのための衣服とハンガー"
+            loading="lazy"
+          >
+        </div>
       </div>
     </section>
-<section class="news-section" id="news">
-  <div class="news-inner">
 
-    <div class="news-head reveal">
-      <div>
-        <div class="section-label">Information & Updates</div>
-        <h2>News</h2>
+    <section class="news-section" id="news" aria-labelledby="news-title">
+      <div class="news-inner">
+        <div class="news-head reveal">
+          <div>
+            <div class="section-label">Information &amp; Updates</div>
+            <h2 id="news-title">News</h2>
+          </div>
+
+          <a class="news-all" href="news/">View all</a>
+        </div>
+
+        <div class="top-news-list reveal">
+          <a class="top-news-item" href="news/">
+            <time class="top-news-date" datetime="2026-07-16">
+              2026.07.16
+            </time>
+            <span class="top-news-category">Information</span>
+            <span class="top-news-title">
+              コーポレートサイト リニューアルのお知らせ
+            </span>
+            <span class="top-news-arrow" aria-hidden="true"></span>
+          </a>
+
+          <a class="top-news-item" href="news/">
+            <time class="top-news-date" datetime="2026-07-10">
+              2026.07.10
+            </time>
+            <span class="top-news-category">Collection</span>
+            <span class="top-news-title">
+              SERENE 2026 Autumn Collectionを公開しました
+            </span>
+            <span class="top-news-arrow" aria-hidden="true"></span>
+          </a>
+
+          <a class="top-news-item" href="news/">
+            <time class="top-news-date" datetime="2026-07-01">
+              2026.07.01
+            </time>
+            <span class="top-news-category">Popup</span>
+            <span class="top-news-title">
+              troisiemechaco POPUP STORE 開催のお知らせ
+            </span>
+            <span class="top-news-arrow" aria-hidden="true"></span>
+          </a>
+        </div>
       </div>
+    </section>
 
-      <a class="news-all" href="news/">
-        View all
-      </a>
-    </div>
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="reveal">
+        <div class="section-label">Make yourself noticed</div>
 
-    <div class="top-news-list reveal">
+        <h2 id="contact-title">Contact</h2>
 
-      <a class="top-news-item" href="news/">
-        <time class="top-news-date" datetime="2026-07-16">
-          2026.07.16
-        </time>
+        <p>
+          ブランドづくり、ブランドプロデュース、
+          事業提携に関するご相談はこちらから。
+        </p>
 
-        <span class="top-news-category">
-          Information
-        </span>
-
-        <span class="top-news-title">
-          コーポレートサイト リニューアルのお知らせ
-        </span>
-
-        <span class="top-news-arrow"></span>
-      </a>
-
-      <a class="top-news-item" href="news/">
-        <time class="top-news-date" datetime="2026-07-10">
-          2026.07.10
-        </time>
-
-        <span class="top-news-category">
-          Collection
-        </span>
-
-        <span class="top-news-title">
-          SERENE 2026 Autumn Collectionを公開しました
-        </span>
-
-        <span class="top-news-arrow"></span>
-      </a>
-
-      <a class="top-news-item" href="news/">
-        <time class="top-news-date" datetime="2026-07-01">
-          2026.07.01
-        </time>
-
-        <span class="top-news-category">
-          Popup
-        </span>
-
-        <span class="top-news-title">
-          troisiemechaco POPUP STORE 開催のお知らせ
-        </span>
-
-        <span class="top-news-arrow"></span>
-      </a>
-
-    </div>
-  </div>
-</section>
-    <section class="contact" id="contact">
-      <div class="reveal"><div class="section-label">Make yourself noticed</div><h2>Contact</h2><p>自社ブランド、OEM/ODM、ブランドプロデュース、事業提携に関するご相談はこちらから。</p><a href="mailto:info@example.com?subject=アプレドゥマンへのお問い合わせ" class="btn">Contact</a></div>
+        <a
+          href="mailto:info@example.com?subject=アプレドゥマンへのお問い合わせ"
+          class="btn"
+        >
+          Contact
+        </a>
+      </div>
     </section>
   </main>
 
-  <footer><div class="footer-inner"><div>après-demain</div><div>Fashion creation / OEM / ODM</div><div>© APRES DEMAIN All Rights Reserved.</div></div></footer>
+  <footer>
+    <div class="footer-inner">
+      <div>après-demain</div>
+      <div>Crafting Brands.</div>
+      <div>© APRES DEMAIN All Rights Reserved.</div>
+    </div>
+  </footer>
 
   <script>
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting) entry.target.classList.add('show');
-      });
-    },{ threshold:.12 });
-    reveals.forEach(el=>observer.observe(el));
+    const header = document.getElementById("site-header");
+    const menuButton = document.querySelector(".menu-button");
+    const nav = document.getElementById("global-nav");
+    const navLinks = nav.querySelectorAll("a");
+    const revealElements = document.querySelectorAll(".reveal");
+
+    const updateHeader = () => {
+      header.classList.toggle("is-scrolled", window.scrollY > 20);
+    };
+
+    const closeMenu = () => {
+      nav.classList.remove("is-open");
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.setAttribute("aria-label", "メニューを開く");
+      document.body.classList.remove("menu-open");
+    };
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+
+      if (isOpen) {
+        closeMenu();
+        return;
+      }
+
+      nav.classList.add("is-open");
+      menuButton.setAttribute("aria-expanded", "true");
+      menuButton.setAttribute("aria-label", "メニューを閉じる");
+      document.body.classList.add("menu-open");
+    });
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    window.addEventListener("scroll", updateHeader, { passive: true });
+    updateHeader();
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries, currentObserver) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("show");
+            currentObserver.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.12 }
+      );
+
+      revealElements.forEach((element) => observer.observe(element));
+    } else {
+      revealElements.forEach((element) => element.classList.add("show"));
+    }
   </script>
 </body>
 </html>
