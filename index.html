@@ -1104,24 +1104,32 @@
   font-weight: 400;
   letter-spacing: 0.02em;
 }
-    /* スマホメニューを画面全体に表示 */
+/* スマホメニューを画面全体に表示 */
 @media (max-width: 768px) {
+  #site-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 10000;
+  }
+
   #global-nav {
     position: fixed;
     inset: 0;
     width: 100%;
     height: 100dvh;
     min-height: 100vh;
-    padding: 120px 32px 50px;
+    padding: 150px 8vw 60px;
     box-sizing: border-box;
     background: #fff;
     overflow-y: auto;
     z-index: 9998;
   }
 
-  #site-header {
+  .menu-button {
     position: relative;
-    z-index: 9999;
+    z-index: 10001;
   }
 
   #global-nav a {
