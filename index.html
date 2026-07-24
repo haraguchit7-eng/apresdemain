@@ -208,34 +208,46 @@
       transform-origin: left;
     }
 
-    .menu-button {
-      display: none;
-      width: 34px;
-      height: 34px;
-      padding: 7px 2px;
-      border: 0;
-      background: transparent;
-      cursor: pointer;
-    }
+   .menu-button {
+  display: none;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
 
-    .menu-button span {
-      display: block;
-      width: 100%;
-      height: 1px;
-      margin: 6px 0;
-      background: var(--ink);
-      transition:
-        transform 0.3s ease,
-        opacity 0.3s ease;
-    }
+.menu-button span {
+  position: absolute;
+  left: 50%;
+  width: 26px;
+  height: 1px;
+  margin: 0;
+  background: var(--ink);
+  transform: translateX(-50%);
+  transform-origin: center;
+  transition: transform .35s ease;
+}
 
-    .menu-button[aria-expanded="true"] span:first-child {
-      transform: translateY(7px) rotate(45deg);
-    }
+.menu-button span:first-child {
+  top: 16px;
+}
 
-    .menu-button[aria-expanded="true"] span:last-child {
-      transform: translateY(-7px) rotate(-45deg);
-    }
+.menu-button span:last-child {
+  top: 24px;
+}
+
+.menu-button[aria-expanded="true"] span:first-child {
+  top: 20px;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.menu-button[aria-expanded="true"] span:last-child {
+  top: 20px;
+  transform: translateX(-50%) rotate(-45deg);
+}
 
     /* Hero */
     .hero {
