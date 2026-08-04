@@ -576,16 +576,22 @@
       color: var(--white);
     }
 
-    .shop-banner > img {
-      width: 100%;
-      height: 560px;
-      object-fit: cover;
-      object-position: center;
-      filter: brightness(0.78);
-      transition:
-        transform 1.2s ease,
-        filter 0.4s ease;
-    }
+    ..shop-banner{
+    overflow:hidden;
+}
+
+.shop-banner > img{
+    width:100%;
+    height:560px;
+    object-fit:cover;
+    object-position:center 15%;
+    transform:scale(.88);
+    transition:transform .6s;
+}
+
+.shop-banner:hover > img{
+    transform:scale(.91);
+}
 
     .shop-banner:hover > img {
       transform: scale(1.025);
