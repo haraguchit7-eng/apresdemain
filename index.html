@@ -24,7 +24,7 @@
     }
 
     *,
-    *::before,
+    *::bee,
     *::after {
       box-sizing: border-box;
       margin: 0;
@@ -77,7 +77,7 @@
       font-size: 9px;
       font-weight: 600;
       letter-spacing: 0.35em;
-      text-transform: uppercase;
+      text-transm: uppercase;
     }
 
     .serif-display {
@@ -95,7 +95,7 @@
       font-size: 9px;
       letter-spacing: 0.3em;
       line-height: 1.4;
-      text-transform: uppercase;
+      text-transm: uppercase;
     }
 
     .btn::after,
@@ -108,27 +108,27 @@
       left: 0;
       height: 1px;
       background: currentColor;
-      transform-origin: left;
-      transition: transform 0.35s ease;
+      transm-origin: left;
+      transition: transm 0.35s ease;
     }
 
     .btn:hover::after,
     .view-more:hover::after,
     .news-all:hover::after {
-      transform: scaleX(0.55);
+      transm: scaleX(0.55);
     }
 
     .reveal {
       opacity: 0;
-      transform: translateY(24px);
+      transm: translateY(24px);
       transition:
         opacity 0.9s ease,
-        transform 0.9s ease;
+        transm 0.9s ease;
     }
 
     .reveal.show {
       opacity: 1;
-      transform: translateY(0);
+      transm: translateY(0);
     }
 
     /* Header */
@@ -181,7 +181,7 @@
       font-size: 9px;
       font-weight: 600;
       letter-spacing: 0.3em;
-      text-transform: uppercase;
+      text-transm: uppercase;
       white-space: nowrap;
     }
 
@@ -198,14 +198,14 @@
       left: 0;
       height: 1px;
       background: currentColor;
-      transform: scaleX(0);
-      transform-origin: right;
-      transition: transform 0.3s ease;
+      transm: scaleX(0);
+      transm-origin: right;
+      transition: transm 0.3s ease;
     }
 
     .nav a:hover::after {
-      transform: scaleX(1);
-      transform-origin: left;
+      transm: scaleX(1);
+      transm-origin: left;
     }
 
    .menu-button {
@@ -226,9 +226,9 @@
   height: 1px;
   margin: 0;
   background: var(--ink);
-  transform: translateX(-50%);
-  transform-origin: center;
-  transition: transform .35s ease;
+  transm: translateX(-50%);
+  transm-origin: center;
+  transition: transm .35s ease;
 }
 
 .menu-button span:first-child {
@@ -241,12 +241,12 @@
 
 .menu-button[aria-expanded="true"] span:first-child {
   top: 20px;
-  transform: translateX(-50%) rotate(45deg);
+  transm: translateX(-50%) rotate(45deg);
 }
 
 .menu-button[aria-expanded="true"] span:last-child {
   top: 20px;
-  transform: translateX(-50%) rotate(-45deg);
+  transm: translateX(-50%) rotate(-45deg);
 }
 
     /* Hero */
@@ -285,7 +285,7 @@
       font-size: 11px;
       letter-spacing: 0.34em;
       line-height: 2.25;
-      text-transform: uppercase;
+      text-transm: uppercase;
     }
 
     .scroll {
@@ -295,7 +295,7 @@
       color: #3a3a3a;
       font-size: 9px;
       letter-spacing: 0.34em;
-      text-transform: uppercase;
+      text-transm: uppercase;
     }
 
     .scroll::after {
@@ -323,8 +323,8 @@
     }
 
     @keyframes slowZoom {
-      from { transform: scale(1.01); }
-      to { transform: scale(1.065); }
+      from { transm: scale(1.01); }
+      to { transm: scale(1.065); }
     }
 
     /* About */
@@ -385,12 +385,12 @@
       object-fit: cover;
       filter: grayscale(0.68) contrast(0.92);
       transition:
-        transform 1.3s ease,
+        transm 1.3s ease,
         filter 1.3s ease;
     }
 
     .feature-card:hover img {
-      transform: scale(1.045);
+      transm: scale(1.045);
       filter: grayscale(0.2) contrast(0.95);
     }
 
@@ -400,7 +400,7 @@
       font-size: 9px;
       font-weight: 600;
       letter-spacing: 0.34em;
-      text-transform: uppercase;
+      text-transm: uppercase;
     }
 
     .feature-card .jp {
@@ -462,11 +462,11 @@
       height: 100%;
       object-fit: cover;
       object-position: center center;
-      transition: transform 1.4s ease;
+      transition: transm 1.4s ease;
     }
 
     .work-main-image:hover img {
-      transform: scale(1.025);
+      transm: scale(1.025);
     }
 
     .work-story-copy {
@@ -474,10 +474,11 @@
     }
 
     .work-story-copy h3{
-    margin-bottom:50px;
-    font-size:clamp(52px,5vw,88px);
-    line-height:1.08;
-    letter-spacing:.02em;
+  font-family: Didot,"Bodoni 72",Georgia,"Times New Roman",serif;
+  font-size: clamp(64px,7vw,120px);
+  font-weight: 400;
+  line-height: .9;
+  letter-spacing: .03em;
 }
    .work-story-copy p {
     margin-bottom: 28px;
@@ -553,11 +554,11 @@
       height: auto;
       object-fit: contain;
       object-position: center;
-      transition: transform 1.4s ease;
+      transition: transm 1.4s ease;
     }
 
     .brand-row:hover .brand-image img {
-      transform: scale(1.015);
+      transm: scale(1.015);
     }
 
     /* Shop */
@@ -585,7 +586,7 @@
     height:560px;
     object-fit:cover;
     object-position:center 15%;
-    transform:scale(.88);
+    transm:scale(.88);
     transition:transform .6s;
 }
 
