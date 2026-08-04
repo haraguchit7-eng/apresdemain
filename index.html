@@ -24,8 +24,8 @@
     }
 
     *,
-    *::bee,
-    *::after {
+*::before,
+*::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -77,7 +77,7 @@
       font-size: 9px;
       font-weight: 600;
       letter-spacing: 0.35em;
-      text-transm: uppercase;
+      text-transform: uppercase;
     }
 
     .serif-display {
@@ -95,7 +95,7 @@
       font-size: 9px;
       letter-spacing: 0.3em;
       line-height: 1.4;
-      text-transm: uppercase;
+      text-transform: uppercase;
     }
 
     .btn::after,
@@ -108,27 +108,27 @@
       left: 0;
       height: 1px;
       background: currentColor;
-      transm-origin: left;
-      transition: transm 0.35s ease;
+      transform-origin: left;
+      transition: transform 0.35s ease;
     }
 
     .btn:hover::after,
     .view-more:hover::after,
     .news-all:hover::after {
-      transm: scaleX(0.55);
+      transform: scaleX(0.55);
     }
 
-    .reveal {
-      opacity: 0;
-      transm: translateY(24px);
-      transition:
-        opacity 0.9s ease,
-        transm 0.9s ease;
-    }
+   .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s ease;
+}
 
     .reveal.show {
       opacity: 1;
-      transm: translateY(0);
+      transform: translateY(0);
     }
 
     /* Header */
@@ -181,7 +181,7 @@
       font-size: 9px;
       font-weight: 600;
       letter-spacing: 0.3em;
-      text-transm: uppercase;
+      text-transform: uppercase;
       white-space: nowrap;
     }
 
@@ -198,14 +198,14 @@
       left: 0;
       height: 1px;
       background: currentColor;
-      transm: scaleX(0);
-      transm-origin: right;
-      transition: transm 0.3s ease;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
     }
 
     .nav a:hover::after {
-      transm: scaleX(1);
-      transm-origin: left;
+      transform: scaleX(1);
+      transform-origin: left;
     }
 
    .menu-button {
@@ -226,9 +226,9 @@
   height: 1px;
   margin: 0;
   background: var(--ink);
-  transm: translateX(-50%);
-  transm-origin: center;
-  transition: transm .35s ease;
+  transform: translateX(-50%);
+  transform-origin: center;
+  transition: transform .35s ease;
 }
 
 .menu-button span:first-child {
@@ -241,12 +241,12 @@
 
 .menu-button[aria-expanded="true"] span:first-child {
   top: 20px;
-  transm: translateX(-50%) rotate(45deg);
+  transform: translateX(-50%) rotate(45deg);
 }
 
 .menu-button[aria-expanded="true"] span:last-child {
   top: 20px;
-  transm: translateX(-50%) rotate(-45deg);
+  transform: translateX(-50%) rotate(-45deg);
 }
 
     /* Hero */
@@ -285,7 +285,7 @@
       font-size: 11px;
       letter-spacing: 0.34em;
       line-height: 2.25;
-      text-transm: uppercase;
+      text-transform: uppercase;
     }
 
     .scroll {
@@ -295,7 +295,7 @@
       color: #3a3a3a;
       font-size: 9px;
       letter-spacing: 0.34em;
-      text-transm: uppercase;
+      text-transform: uppercase;
     }
 
     .scroll::after {
@@ -323,8 +323,8 @@
     }
 
     @keyframes slowZoom {
-      from { transm: scale(1.01); }
-      to { transm: scale(1.065); }
+      from { transform: scale(1.01); }
+      to { transform: scale(1.065); }
     }
 
     /* About */
@@ -380,17 +380,17 @@
     }
 
     .feature-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: grayscale(0.68) contrast(0.92);
-      transition:
-        transm 1.3s ease,
-        filter 1.3s ease;
-    }
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.68) contrast(0.92);
+  transition:
+    transform 1.3s ease,
+    filter 1.3s ease;
+}
 
     .feature-card:hover img {
-      transm: scale(1.045);
+      transform: scale(1.045);
       filter: grayscale(0.2) contrast(0.95);
     }
 
@@ -400,7 +400,7 @@
       font-size: 9px;
       font-weight: 600;
       letter-spacing: 0.34em;
-      text-transm: uppercase;
+      text-transform: uppercase;
     }
 
     .feature-card .jp {
@@ -462,11 +462,11 @@
       height: 100%;
       object-fit: cover;
       object-position: center center;
-      transition: transm 1.4s ease;
+      transition: transform 1.4s ease;
     }
 
     .work-main-image:hover img {
-      transm: scale(1.025);
+      transform: scale(1.025);
     }
 
     .work-story-copy {
@@ -554,79 +554,73 @@
       height: auto;
       object-fit: contain;
       object-position: center;
-      transition: transm 1.4s ease;
+      transition: transform 1.4s ease;
     }
 
     .brand-row:hover .brand-image img {
-      transm: scale(1.015);
+      transform: scale(1.015);
     }
 
     /* Shop */
-    .shop-section {
-      padding: 120px 0;
-      background: var(--white);
-    }
-
-    .shop-banner {
-      display: block;
-      position: relative;
-      width: var(--content);
-      margin: 0 auto;
-      overflow: hidden;
-      background: #111;
-      color: var(--white);
-    }
-
-    ..shop-banner{
-    overflow:hidden;
+.shop-section {
+  padding: 120px 0;
+  background: var(--white);
 }
 
-.shop-banner > img{
-    width:100%;
-    height:560px;
-    object-fit:cover;
-    object-position:center 15%;
-    transm:scale(.88);
-    transition:transform .6s;
+.shop-banner {
+  display: block;
+  position: relative;
+  width: var(--content);
+  margin: 0 auto;
+  overflow: hidden;
+  background: #111;
+  color: var(--white);
 }
 
-.shop-banner:hover > img{
-    transform:scale(.91);
+.shop-banner > img {
+  width: 100%;
+  height: 560px;
+  object-fit: cover;
+  object-position: center 18%;
+  filter: brightness(0.78);
+  transition:
+    transform 1.2s ease,
+    filter 0.4s ease;
 }
 
-    .shop-banner:hover > img {
-      transform: scale(1.025);
-      filter: brightness(0.68);
-    }
+.shop-banner:hover > img {
+  transform: scale(1.025);
+  filter: brightness(0.68);
+}
 
-    .shop-overlay {
-      position: absolute;
-      bottom: 54px;
-      left: 60px;
-    }
+.shop-overlay {
+  position: absolute;
+  bottom: 54px;
+  left: 60px;
+}
 
-    .shop-overlay .section-label {
-      margin-bottom: 14px;
-      color: var(--white);
-    }
+.shop-overlay .section-label {
+  margin-bottom: 14px;
+  color: var(--white);
+}
 
-    .shop-overlay h2 {
-      margin-bottom: 18px;
-      font-family: Didot, "Bodoni 72", Georgia, "Times New Roman", serif;
-      font-size: clamp(48px, 5.4vw, 82px);
-      font-weight: 400;
-      line-height: 1;
-      letter-spacing: 0.04em;
-    }
+.shop-overlay h2 {
+  margin-bottom: 18px;
+  font-family: Didot, "Bodoni 72", Georgia, "Times New Roman", serif;
+  font-size: clamp(48px, 5.4vw, 82px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.04em;
+}
 
-    .shop-overlay span {
-      display: inline-block;
-      padding-bottom: 7px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.85);
-      font-size: 9px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-    }
+.shop-overlay span {
+  display: inline-block;
+  padding-bottom: 7px;
+  border-bottom: 1px solid rgba(255,255,255,.85);
+  font-size: 9px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+}
 
     /* Create */
     .create {
@@ -989,18 +983,6 @@
         height: 450px;
       }
 
-     .work-story-copy h3 {
-  font-family:
-    "Helvetica Neue",
-    Arial,
-    "Hiragino Kaku Gothic ProN",
-    "Yu Gothic",
-    sans-serif;
-  font-size: 44px;
-  font-weight: 400;
-  line-height: 1.08;
-  letter-spacing: 0.02em;
-}
       .brands-section {
         padding: 80px 0;
       }
@@ -1132,16 +1114,6 @@
       }
     }
     /* WORK見出しの書体を統一（PC・タブレット） */
-.work-story-copy h3 {
-  font-family:
-    "Helvetica Neue",
-    Arial,
-    "Hiragino Kaku Gothic ProN",
-    "Yu Gothic",
-    sans-serif;
-  font-weight: 400;
-  letter-spacing: 0.02em;
-}
 /* スマホメニューを画面全体に表示 */
 @media (max-width: 768px) {
   #site-header {
@@ -1337,7 +1309,7 @@
           </div>
 
           <p>
-            自社で展開する4つのブランド。
+            自社で展開する3つのブランド。
             それぞれの女性像と世界観を、
             企画・素材・シルエットから丁寧に形にしています。
           </p>
