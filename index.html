@@ -1128,10 +1128,11 @@
         opacity: 1;
         transform: none;
       }
-    }
     /* WORK見出しの書体を統一（PC・タブレット） */
 /* スマホメニューを画面全体に表示 */
+/* スマホメニュー */
 @media (max-width: 768px) {
+
   #site-header {
     position: fixed;
     top: 0;
@@ -1142,15 +1143,33 @@
 
   #global-nav {
     position: fixed;
-    inset: 0;
-    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    width: 100vw;
     height: 100dvh;
-    min-height: 100vh;
+
     padding: 150px 8vw 60px;
-    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 30px;
+
     background: #fff;
+
     overflow-y: auto;
-    z-index: 9998;
+    z-index: 9999;
+  }
+
+  #global-nav a {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: .28em;
   }
 
   .menu-button {
@@ -1158,9 +1177,10 @@
     z-index: 10001;
   }
 
-  #global-nav a {
-    position: relative;
-    z-index: 1;
+  /* メニュー表示中はページ本体を完全に隠す */
+  body.menu-open main,
+  body.menu-open footer {
+    visibility: hidden;
   }
 }
     @media (max-width: 820px) {
