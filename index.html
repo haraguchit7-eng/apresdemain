@@ -965,13 +965,21 @@
   }
 
   .feature-img {
-    height: 230px;
-  }
-  .feature-img img {
+  height: 230px;
+}
+
+/* 基本は通常表示 */
+.feature-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 18% center;
+}
+
+/* 企画・デザインの写真だけ右側をカット */
+.feature-card:first-child .feature-img img {
+  width: 125%;
+  max-width: none;
+  object-position: left center;
 }
 
   .work-section {
